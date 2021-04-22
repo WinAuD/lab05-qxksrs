@@ -62,9 +62,10 @@ class WikiFetch extends Component {
   render() {
     return (
       <div>
-        <input className="NiceInput" type="text" onChange={this.handleChange}/>
-        <p className="NiceOutput">"Received: " {this.state.text}</p>
+        <input className="NiceInput" type="text" onChange={this.handleChange} />
+        <div className="NiceOutput" dangerouslySetInnerHTML={{ __html: this.state.text }}></div>
       </div>
+
     );
   }
 }
