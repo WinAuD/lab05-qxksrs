@@ -1,0 +1,18 @@
+.NiceInput {
+  background-color: ghostwhite;
+  display: block;
+  margin: auto;
+  color: rgb(0, 10, 14);
+  font-size: 32px;
+  font-family: fantasy;
+  text-align: center;
+}
+
+.NiceOutput {
+  background-color: ;
+  padding-top: 20px;
+  color: rgb(0, 10, 14);
+  font-size: 14px;
+  font-family: sans-serif;
+  text-align: left;
+}
