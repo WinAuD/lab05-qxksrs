@@ -3,20 +3,30 @@ import './WikiFetch.css';
 
 class WikiFetch extends Component {
 
-  state = { text : " --- "};
+  state = { text : " --- ",
+            input: ""};
 
   handleChange = (event) => {
      //alert(event.target.value);
+     this.setState( {input: event.target.value});
      this.fetchData();
   }   
 
+  handleSubmit = (event) => {
+    //alert('A name was submitted: ' + this.state.text);
+    event.preventDefault();
+     this.setState( {input: ""});
+  }
+
+
   fetchData() {
+    let input = event.target.value; // Fuer Query-Parameter "titles"
+
     // 1. Create a new XMLHttpRequest object
     let xhr = new XMLHttpRequest();
-    let input = event.target.value; // Fuer Query
 
     // 2. Configure: <Method> , <URL>
-    xhr.open('GET', 'https://de.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles='+input);
+    xhr.open('GET', 'https://de.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles=' + input);
 
     // 3. Send the request to the destination
     xhr.send();
@@ -62,11 +72,11 @@ class WikiFetch extends Component {
 
   render() {
     return (
-      <div>
-        <input className="NiceInput" type="text" onChange={this.handleChange} />
+      <form onSubmit={this.handleSubmit}>
+        <input className="NiceInput" type="text" onChange={this.handleChange} value={this.state.input}/>
+        <input className="NiceInput" type="submit" value="Submit"/>
         <div className="NiceOutput" dangerouslySetInnerHTML={{ __html: this.state.text }}></div>
-      </div>
-
+      </form>
     );
   }
 }
