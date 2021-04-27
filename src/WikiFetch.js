@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './WikiFetch.css';
 
 class WikiFetch extends Component {
-
+  myRef = React.createRef();
   state = { text : " --- ",
             input: ""};
 
@@ -15,9 +15,9 @@ class WikiFetch extends Component {
   handleSubmit = (event) => {
     //alert('A name was submitted: ' + this.state.text);
     event.preventDefault();
-     this.setState( {input: ""});
+    this.setState( {input: ""});
+    this.myRef.current.focus();
   }
-
 
   fetchData() {
     let input = event.target.value; // Fuer Query-Parameter "titles"
@@ -73,7 +73,7 @@ class WikiFetch extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input className="NiceInput" type="text" onChange={this.handleChange} value={this.state.input}/>
+        <input className="NiceInput" type="text" onChange={this.handleChange} value={this.state.input} ref={this.myRef}/>
         <input className="NiceInput" type="submit" value="Submit"/>
         <div className="NiceOutput" dangerouslySetInnerHTML={{ __html: this.state.text }}></div>
       </form>
