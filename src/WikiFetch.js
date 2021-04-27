@@ -13,9 +13,10 @@ class WikiFetch extends Component {
   fetchData() {
     // 1. Create a new XMLHttpRequest object
     let xhr = new XMLHttpRequest();
+    let input = event.target.value; // Fuer Query
 
     // 2. Configure: <Method> , <URL>
-    xhr.open('GET', 'https://de.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles=a');
+    xhr.open('GET', 'https://de.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles='+input);
 
     // 3. Send the request to the destination
     xhr.send();
